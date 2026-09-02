@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name:       Auto Daily Newsletter
- * Plugin URI:        https://github.com/geomanuk/automatic-daily-newsletter
+ * Plugin URI:        https://github.com/geomanuk20/newsletter-plugin-
  * Description:       Automates daily email newsletter digests by aggregating the latest 5–10 WordPress news posts and sending them to subscribers via configurable SMTP or API.
  * Version:           1.1.2
  * Author:            Geo manu k
- * Author URI:        https://github.com/geomanuk
+ * Author URI:        https://github.com/geomanuk20
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       auto-daily-newsletter
