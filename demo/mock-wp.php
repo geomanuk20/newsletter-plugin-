@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 define( 'WPINC', true );
-define( 'ADNL_VERSION', '1.1.1' );
+define( 'ADNL_VERSION', '1.1.2' );
 define( 'ADNL_PLUGIN_DIR', dirname( __DIR__ ) . '/' );
 define( 'ADNL_PLUGIN_URL', '/' );
 define( 'ADNL_PLUGIN_BASENAME', 'auto-daily-newsletter/auto-daily-newsletter.php' );
@@ -258,6 +258,8 @@ function adnl_get_mock_news_posts() {
 			'permalink'     => 'http://127.0.0.1:8000/demo/index.php?view=article&id=101',
 			'excerpt'       => 'Researchers reveal a scalable 1,000-qubit architecture running at ambient room temperatures, paving the way for commercial deployments across cryptography and aerospace.',
 			'date'          => date( 'M j, Y' ),
+			'is_today'      => true,
+			'post_date_raw' => date( 'Y-m-d' ),
 			'author'        => 'Elena Rostova',
 			'category'      => 'Technology & AI',
 			'thumbnail_url' => 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1000&q=80',
@@ -269,6 +271,8 @@ function adnl_get_mock_news_posts() {
 			'permalink'     => 'http://127.0.0.1:8000/demo/index.php?view=article&id=102',
 			'excerpt'       => 'An international consortium completes the submarine high-voltage transmission line delivering uninterrupted renewable solar power between continents.',
 			'date'          => date( 'M j, Y' ),
+			'is_today'      => true,
+			'post_date_raw' => date( 'Y-m-d' ),
 			'author'        => 'Marcus Vance',
 			'category'      => 'Energy & Climate',
 			'thumbnail_url' => 'https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=400&q=80',
@@ -280,6 +284,8 @@ function adnl_get_mock_news_posts() {
 			'permalink'     => 'http://127.0.0.1:8000/demo/index.php?view=article&id=103',
 			'excerpt'       => 'Financial regulators from seven leading economies agree on interoperable standards to streamline wholesale cross-border settlements.',
 			'date'          => date( 'M j, Y' ),
+			'is_today'      => true,
+			'post_date_raw' => date( 'Y-m-d' ),
 			'author'        => 'Sophia Sterling',
 			'category'      => 'Markets & Business',
 			'thumbnail_url' => 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=400&q=80',
@@ -291,6 +297,8 @@ function adnl_get_mock_news_posts() {
 			'permalink'     => 'http://127.0.0.1:8000/demo/index.php?view=article&id=104',
 			'excerpt'       => 'Marine biologists catalog over 40 previously unrecorded deep-sea species thriving under extreme oceanic pressures.',
 			'date'          => date( 'M j, Y' ),
+			'is_today'      => true,
+			'post_date_raw' => date( 'Y-m-d' ),
 			'author'        => 'Dr. Kenneth Thorne',
 			'category'      => 'Science & Space',
 			'thumbnail_url' => 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=400&q=80',

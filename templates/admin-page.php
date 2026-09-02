@@ -252,26 +252,62 @@ $active_tab = isset( $_GET['tab'] ) ? sanitize_key( $_GET['tab'] ) : 'dashboard'
 								</div>
 							</div>
 
-							<div class="adnl-posts-checklist" style="max-height: 380px; overflow-y: auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px;">
-								<?php
-								$recent_posts = array();
-								if ( class_exists( 'ADNL_Post_Collector' ) ) {
-									$post_collector = new ADNL_Post_Collector();
-									if ( method_exists( $post_collector, 'get_recent_posts_for_selection' ) ) {
-										$recent_posts = $post_collector->get_recent_posts_for_selection( 25 );
-									}
+							<?php
+							$recent_posts = array();
+							if ( class_exists( 'ADNL_Post_Collector' ) ) {
+								$post_collector = new ADNL_Post_Collector();
+								if ( method_exists( $post_collector, 'get_recent_posts_for_selection' ) ) {
+									$recent_posts = $post_collector->get_recent_posts_for_selection( 100 );
 								}
-								
-								// Fallback for demo mode
-								if ( empty( $recent_posts ) && function_exists( 'adnl_get_mock_news_posts' ) ) {
-									$recent_posts = adnl_get_mock_news_posts();
-								}
+							}
+							
+							// Fallback for demo mode
+							if ( empty( $recent_posts ) && function_exists( 'adnl_get_mock_news_posts' ) ) {
+								$recent_posts = adnl_get_mock_news_posts();
+							}
 
+							$today_count = 0;
+							foreach ( $recent_posts as $p ) {
+								if ( ! empty( $p['is_today'] ) ) {
+									$today_count++;
+								}
+							}
+							?>
+
+							<!-- Quick Filter & Action Toolbar for Today's News -->
+							<div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 12px; padding: 10px 14px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 8px;">
+								<div style="display:flex; align-items:center; gap:8px; flex-wrap: wrap;">
+									<span style="font-size: 11px; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.5px;"><?php esc_html_e( 'View:', 'auto-daily-newsletter' ); ?></span>
+									<button type="button" class="button adnl-filter-btn <?php echo ( $today_count > 0 ) ? 'button-primary active' : ''; ?>" data-filter="today" id="adnl-filter-today" style="font-weight: 600; border-radius: 16px; font-size: 12px;">
+										📅 <?php printf( esc_html__( 'Today\'s News (%d)', 'auto-daily-newsletter' ), $today_count ); ?>
+									</button>
+									<button type="button" class="button adnl-filter-btn <?php echo ( 0 === $today_count ) ? 'button-primary active' : ''; ?>" data-filter="all" id="adnl-filter-all" style="font-weight: 600; border-radius: 16px; font-size: 12px;">
+										📋 <?php printf( esc_html__( 'All News (%d)', 'auto-daily-newsletter' ), count( $recent_posts ) ); ?>
+									</button>
+								</div>
+								<div style="display:flex; align-items:center; gap:8px; flex-wrap: wrap;">
+									<input type="text" id="adnl-news-search" placeholder="<?php esc_attr_e( '🔍 Search news title...', 'auto-daily-newsletter' ); ?>" style="padding: 4px 10px; font-size: 12px; width: 200px; border-radius: 6px; border: 1px solid #cbd5e1; height: 30px;" />
+									<button type="button" class="button button-primary" id="adnl-btn-select-all-today" style="font-size: 12px; font-weight: 600; height: 30px;">
+										✓ <?php esc_html_e( 'Select All Today', 'auto-daily-newsletter' ); ?>
+									</button>
+									<button type="button" class="button" id="adnl-btn-clear-selection" style="font-size: 12px; height: 30px;">
+										✕ <?php esc_html_e( 'Deselect All', 'auto-daily-newsletter' ); ?>
+									</button>
+								</div>
+							</div>
+
+							<div class="adnl-posts-checklist" style="max-height: 480px; overflow-y: auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px;">
+								<?php
 								if ( ! empty( $recent_posts ) ) :
 									foreach ( $recent_posts as $p ) :
 										$is_checked = in_array( $p['id'], $selected_ids );
+										$is_today   = ! empty( $p['is_today'] );
 										?>
-										<label style="display:flex; align-items:center; gap: 14px; padding: 12px 16px; border-bottom: 1px solid #f1f5f9; cursor: pointer; transition: background 0.15s; <?php echo $is_checked ? 'background:#eff6ff;' : ''; ?>" class="adnl-post-select-row">
+										<label style="display:flex; align-items:center; gap: 14px; padding: 12px 16px; border-bottom: 1px solid #f1f5f9; cursor: pointer; transition: background 0.15s; <?php echo $is_checked ? 'background:#eff6ff;' : ''; ?>" 
+										       class="adnl-post-select-row" 
+										       data-is-today="<?php echo $is_today ? '1' : '0'; ?>"
+										       data-title="<?php echo esc_attr( strtolower( $p['title'] ) ); ?>"
+										       data-category="<?php echo esc_attr( strtolower( $p['category'] ) ); ?>">
 											<input type="checkbox" name="adnl_selected_post_ids[]" value="<?php echo intval( $p['id'] ); ?>" <?php checked( $is_checked ); ?> class="adnl-post-checkbox" style="margin: 0; width: 18px; height: 18px;" />
 											<?php if ( ! empty( $p['thumbnail_url'] ) ) : ?>
 												<img src="<?php echo esc_url( $p['thumbnail_url'] ); ?>" style="width: 54px; height: 38px; object-fit: cover; border-radius: 4px;" alt="" />
@@ -279,6 +315,9 @@ $active_tab = isset( $_GET['tab'] ) ? sanitize_key( $_GET['tab'] ) : 'dashboard'
 											<div style="flex: 1;">
 												<div style="font-weight: 600; font-size: 14px; color: #0f172a; line-height: 1.3;">
 													<?php echo esc_html( $p['title'] ); ?>
+													<?php if ( $is_today ) : ?>
+														<span style="background: #dcfce7; color: #166534; font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 4px; margin-left: 6px; vertical-align: middle; border: 1px solid #bbf7d0;">📅 <?php esc_html_e( 'TODAY', 'auto-daily-newsletter' ); ?></span>
+													<?php endif; ?>
 												</div>
 												<div style="font-size: 12px; color: #64748b; margin-top: 3px;">
 													<span style="color: #2563eb; font-weight: 600;"><?php echo esc_html( $p['category'] ); ?></span> &bull; <?php echo esc_html( $p['date'] ); ?> &bull; <?php echo esc_html( $p['read_time'] ); ?>

@@ -381,6 +381,58 @@
 			$('#adnl-selected-counter').text(count + ' Articles Selected');
 		});
 
+		// Filter News Rows (Today vs All + Search Query)
+		function applyNewsFilter() {
+			var activeFilter = $('.adnl-filter-btn.active').data('filter') || 'all';
+			var searchTerm   = ($('#adnl-news-search').val() || '').toLowerCase().trim();
+
+			$('.adnl-post-select-row').each(function() {
+				var $row     = $(this);
+				var isToday  = $row.data('is-today') === 1 || $row.data('is-today') === '1';
+				var title    = ($row.data('title') || '').toString().toLowerCase();
+				var category = ($row.data('category') || '').toString().toLowerCase();
+
+				var matchesFilter = (activeFilter === 'all') || (activeFilter === 'today' && isToday);
+				var matchesSearch = !searchTerm || title.indexOf(searchTerm) !== -1 || category.indexOf(searchTerm) !== -1;
+
+				if (matchesFilter && matchesSearch) {
+					$row.show();
+				} else {
+					$row.hide();
+				}
+			});
+		}
+
+		// Initial filter apply on page load if Today's news filter is active
+		if ($('#adnl-filter-today.active').length) {
+			applyNewsFilter();
+		}
+
+		// Switch Filter (Today vs All)
+		$(document).on('click', '.adnl-filter-btn', function(e) {
+			e.preventDefault();
+			$('.adnl-filter-btn').removeClass('active button-primary');
+			$(this).addClass('active button-primary');
+			applyNewsFilter();
+		});
+
+		// Live Search Filter
+		$(document).on('input', '#adnl-news-search', function() {
+			applyNewsFilter();
+		});
+
+		// Select All Today
+		$(document).on('click', '#adnl-btn-select-all-today', function(e) {
+			e.preventDefault();
+			$('.adnl-post-select-row[data-is-today="1"] .adnl-post-checkbox').prop('checked', true).trigger('change');
+		});
+
+		// Deselect All
+		$(document).on('click', '#adnl-btn-clear-selection', function(e) {
+			e.preventDefault();
+			$('.adnl-post-checkbox').prop('checked', false).trigger('change');
+		});
+
 
 		// Position change event
 		$('#adnl-popup-position-select').on('change', function() {

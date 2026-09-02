@@ -143,12 +143,18 @@ class ADNL_Post_Collector {
 		$word_count = str_word_count( wp_strip_all_tags( $post->post_content ) );
 		$reading_time = max( 1, ceil( $word_count / 200 ) ) . ' min read';
 
+		$post_date_raw = get_the_date( 'Y-m-d', $post_id );
+		$today_date    = current_time( 'Y-m-d' );
+		$is_today      = ( $post_date_raw === $today_date );
+
 		return array(
 			'id'            => $post_id,
 			'title'         => $title,
 			'permalink'     => $permalink,
 			'excerpt'       => $excerpt,
 			'date'          => get_the_date( '', $post_id ),
+			'post_date_raw' => $post_date_raw,
+			'is_today'      => $is_today,
 			'author'        => get_the_author_meta( 'display_name', $post->post_author ),
 			'category'      => $category_name,
 			'thumbnail_url' => $thumbnail_url,
@@ -162,7 +168,7 @@ class ADNL_Post_Collector {
 	 * @param int $limit
 	 * @return array
 	 */
-	public function get_recent_posts_for_selection( $limit = 20 ) {
+	public function get_recent_posts_for_selection( $limit = 100 ) {
 		$post_types = get_option( 'adnl_post_types', array( 'post' ) );
 		$args = array(
 			'post_type'      => ! empty( $post_types ) ? $post_types : array( 'post' ),
