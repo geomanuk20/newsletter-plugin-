@@ -1,0 +1,151 @@
+{
+    "options": {
+        "adnl_enabled": 1,
+        "adnl_posts_count": 9,
+        "adnl_lookback_hours": 1,
+        "adnl_fallback_behavior": "latest",
+        "adnl_post_types": [
+            "post"
+        ],
+        "adnl_categories": [
+            1,
+            2
+        ],
+        "adnl_schedule_time": "12:45",
+        "adnl_email_subject": "[Daily Digest] Today's Top Stories - {date}",
+        "adnl_header_title": "",
+        "adnl_preheader_text": "",
+        "adnl_primary_color": "#e11d48",
+        "adnl_from_name": "Global News Daily",
+        "adnl_from_email": "newsletter@globalnews.com",
+        "adnl_mailer_type": "smtp",
+        "adnl_smtp_host": "smtp.gmail.com",
+        "adnl_smtp_port": 465,
+        "adnl_smtp_encryption": "ssl",
+        "adnl_smtp_auth": 1,
+        "adnl_smtp_user": "technicalserver34@gmail.com",
+        "adnl_smtp_pass": "ouxo blsz flwd qyke",
+        "adnl_batch_size": 30,
+        "adnl_batch_delay": 1,
+        "adnl_last_run_timestamp": 1788245807,
+        "blogname": "Whiteswan Tv News",
+        "admin_email": "technicalserver34@gmail.com",
+        "date_format": "F j, Y",
+        "adnl_selection_mode": "manual",
+        "adnl_selected_post_ids": [
+            101,
+            102,
+            103,
+            104
+        ],
+        "adnl_site_logo": "",
+        "adnl_footer_text": "",
+        "adnl_footer_copyright": "",
+        "adnl_footer_bg_color": "#f8fafc",
+        "adnl_popup_enabled": 1,
+        "adnl_popup_show_logo": 0,
+        "adnl_popup_title": "\ud83d\udce2 STAY UPDATED!",
+        "adnl_popup_message": "Get the latest news, breaking updates, and important stories delivered straight to you. Subscribe now and never miss an update!",
+        "adnl_popup_button": "SUBSCRIBE",
+        "adnl_popup_btn_color": "#f43f5e",
+        "adnl_popup_placeholder": "Email",
+        "adnl_popup_image": "",
+        "adnl_popup_delay": 3,
+        "adnl_logo_height": 70,
+        "adnl_popup_logo_height": 55,
+        "adnl_popup_position": "top-left",
+        "adnl_popup_frequency": 0,
+        "adnl_timezone": ""
+    },
+    "subscribers": [
+        {
+            "email": "geomanuk20@gmail.com",
+            "name": "",
+            "token": "token_282438c9a0bdeac717c7",
+            "status": "unsubscribed",
+            "created_at": "2026-08-30 07:00:54",
+            "id": 1
+        },
+        {
+            "email": "geomanuk20@gmail.com",
+            "name": "",
+            "token": "token_8654939f5244b7252555",
+            "status": "active",
+            "created_at": "2026-08-30 11:44:10",
+            "id": 2
+        },
+        {
+            "email": "alice@example.com",
+            "name": "Alice Walker",
+            "status": "active",
+            "token": "fd9b9e93e0bdca5126a4f1acb1c41e18",
+            "created_at": "2026-08-31 09:36:30",
+            "updated_at": "2026-08-31 09:36:30",
+            "id": 3
+        },
+        {
+            "email": "bob@example.com",
+            "name": "Bob Stone",
+            "status": "active",
+            "token": "467cbdae0d8d3152346ff8773bf36b90",
+            "created_at": "2026-08-31 09:36:30",
+            "updated_at": "2026-08-31 09:36:30",
+            "id": 4
+        },
+        {
+            "email": "charlie@example.com",
+            "name": "Charlie Brown",
+            "status": "active",
+            "token": "e6352680853ab1b86007c29979d9d17d",
+            "created_at": "2026-08-31 09:36:37",
+            "updated_at": "2026-08-31 09:36:37",
+            "id": 5
+        },
+        {
+            "email": "david@example.com",
+            "name": "David",
+            "status": "active",
+            "token": "e1c0fefea91e2c5ab25f49f78809afcd",
+            "created_at": "2026-08-31 09:36:43",
+            "updated_at": "2026-08-31 09:36:43",
+            "id": 6
+        },
+        {
+            "email": "geomanuk20@gmail.com",
+            "name": "",
+            "token": "token_3876e7a66804820662be",
+            "status": "active",
+            "created_at": "2026-08-31 12:03:39",
+            "id": 7
+        }
+    ],
+    "logs": [
+        {
+            "subject": "[Daily Digest] Today's Top Stories - September 1, 2026",
+            "posts_count": 7,
+            "recipients_count": 6,
+            "status": "success",
+            "message": "Sent to 6 subscribers. Failures: 0. ",
+            "created_at": "2026-09-01 06:56:47",
+            "id": 3
+        },
+        {
+            "subject": "[Daily Digest] Today's Top Stories - September 1, 2026",
+            "posts_count": 7,
+            "recipients_count": 6,
+            "status": "success",
+            "message": "Sent to 6 subscribers. Failures: 0. ",
+            "created_at": "2026-09-01 06:55:34",
+            "id": 2
+        },
+        {
+            "subject": "[Test Email] Whiteswan Tv News - Daily Newsletter Preview",
+            "posts_count": 7,
+            "recipients_count": 1,
+            "status": "success",
+            "message": "Message accepted by SMTP server: 250 2.0.0 OK  1788238834 d2e1a72fcca58-85be8e5e5fesm443804b3a.29 - gsmtp",
+            "created_at": "2026-09-01 05:00:34",
+            "id": 1
+        }
+    ]
+}
