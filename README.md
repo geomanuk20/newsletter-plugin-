@@ -129,3 +129,4 @@ add_filter( 'adnl_rendered_digest_html', function( $html, $posts ) {
 
 ## License
 GPLv2 or later.
+# newsletter-plugin-
